@@ -17,8 +17,10 @@ function downloadFile(url, filename) {
 }
 
 export default function File(props) {
+    const api_url = process.env.NEXT_PUBLIC_JUSTENCRYPT_API_URL;
+
     const handleDownload = () => {
-        const fileUrl = `http://localhost:8000${sanitizePath(`file/${props.path}/${props.file.file_name}`)}`;
+        const fileUrl = `${api_url}${sanitizePath(`file/${props.path}/${props.file.file_name}`)}`;
         const filename = props.file.file_name;
 
         downloadFile(fileUrl, filename);
@@ -26,7 +28,7 @@ export default function File(props) {
 
     return (
         <div className="w-40 h-40 cursor-pointer overflow-hidden rounded-base border-2 border-black bg-main font-base shadow-base" onClick={handleDownload}>
-            <Image className="w-full h-24 border-none" src={`http://localhost:8000${sanitizePath(`file/${props.path}/${props.file.file_name}`)}`} alt="" />
+            <img className="w-full h-24 border-none" src={`${api_url}${sanitizePath(`file/${props.path}/${props.file.file_name}`)}`} alt="" />
             <div className="text-sm w-full border-t-2 border-black p-2 truncate text-wrap text-ellipsis overflow-hidden">
                 {props.file.file_name}
             </div>

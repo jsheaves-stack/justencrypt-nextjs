@@ -1,7 +1,6 @@
 const API_URL = process.env.NEXT_PUBLIC_JUSTENCRYPT_API_URL;
 
 export function checkAuthRequest() {
-    console.log(process)
     return new Promise((resolve, reject) => {
         const options = { method: "GET", credentials: 'include' };
 
