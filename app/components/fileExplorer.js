@@ -43,7 +43,9 @@ export default function FileExplorer(props) {
         e.stopPropagation();
 
         setDragging(false);
-        uploadFilesRequest(e.dataTransfer.files, path, setFolderContents).then(() => { }).catch((err) => console.error(err));
+        uploadFilesRequest(e.dataTransfer.files, path)
+            .then((contents) => { setFolderContents(contents) })
+            .catch((err) => console.error(err));
     };
 
     const handleDragOver = (e) => {

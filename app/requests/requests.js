@@ -73,7 +73,7 @@ export function getFolderRequest(path) {
     });
 }
 
-export function uploadFilesRequest(files, path, setFolderContents) {
+export function uploadFilesRequest(files, path) {
     return new Promise((resolve, reject) => {
         const uploadFilesPromises = [];
 
@@ -94,12 +94,12 @@ export function uploadFilesRequest(files, path, setFolderContents) {
 
         Promise.all(uploadFilesPromises).then((res) => {
             getFolderRequest(path).then((res) => {
-                setFolderContents(res);
+                return resolve(res);
             }).catch((err) => {
-                console.error(err);
+                return reject(err);
             });
         }).catch((err) => {
-            console.error(err);
+            return reject(err);
         })
     });
 }
