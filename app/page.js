@@ -27,10 +27,10 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen w-full flex-col items-center justify-between bg-bg text-black select-none">
+    <main className="flex h-full w-full flex-col items-center justify-between bg-bg text-black select-none">
       {
         initialLoad ? (
-          <div className="absolute inset-0 flex items-center justify-center text-lg">
+          <div className="absolute bg-bg inset-0 flex items-center justify-center text-lg">
             Loading...
           </div>
         ) : (
