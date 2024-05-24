@@ -3,13 +3,14 @@
 import { useEffect, useState } from "react";
 import { getFolderRequest } from "../requests/requests";
 import { sanitizePath, popPath } from "../utils/util";
+
 import File from './file';
 import Folder from './folder';
+import FileUploadForm from "./fileUploadForm";
 
 export default function FileExplorer(props) {
     const [path, setPath] = useState("/");
     const [folderContents, setFolderContents] = useState([]);
-    const [uploadFile, setUploadFile] = useState(false);
 
     const updatePath = (path) => setPath(sanitizePath(path));
 
@@ -48,15 +49,8 @@ export default function FileExplorer(props) {
                     })
                 }
             </div>
-            <div className="fixed bottom-2 right-1 font-bold py-2 px-4 rounded">
-                {uploadFile && <div className="h-32 w-32 bg-main"></div>}
-                <button
-                    className="flex text-lg text-align-center cursor-pointer rounded-base border-2 border-black bg-main w-18 px-4 py-2 font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
-                    onClick={() => setUploadFile(!uploadFile)}
-                >
-                    +
-                </button>
-            </div>
+
+            <FileUploadForm path={path} setFolderContents={setFolderContents} />
         </div>
     );
 }

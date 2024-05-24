@@ -72,3 +72,34 @@ export function getFolderRequest(path) {
         });
     });
 }
+
+export function uploadFilesRequest(files, path, setFolderContents) {
+    return new Promise((resolve, reject) => {
+        const uploadFilesPromises = [];
+
+        for (let x = 0; x < files.length; x++) {
+            const file = files[x];
+
+            const options = {
+                method: "PUT",
+                credentials: 'include',
+                body: file,
+                headers: {
+                    "Content-Type": file.type
+                }
+            };
+
+            uploadFilesPromises.push(fetch(`${API_URL}/file${path}/${file.name}`, options));
+        }
+
+        Promise.all(uploadFilesPromises).then((res) => {
+            getFolderRequest(path).then((res) => {
+                setFolderContents(res);
+            }).catch((err) => {
+                console.error(err);
+            });
+        }).catch((err) => {
+            console.error(err);
+        })
+    });
+}
