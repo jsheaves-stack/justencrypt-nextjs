@@ -36,7 +36,7 @@ export default function File(props) {
 
     return (
         <div className="w-40 h-40 cursor-pointer overflow-hidden rounded-base border-2 border-black bg-main font-base shadow-base" onClick={handleDownload}>
-            {<img className="w-full h-24 border-none" src={image_is_supported ? `${api_url}${sanitizePath(`file/${props.path}/${props.file.file_name}`)}` : ''} alt="" />}
+            {<img className="w-full h-24 border-none" src={image_is_supported ? `${api_url}${sanitizePath(`thumbnail/${props.path}/${props.file.file_name}`)}` : ''} alt="" />}
             <div className="text-sm w-full border-t-2 border-black p-2 truncate text-wrap text-ellipsis overflow-hidden">
                 {props.file.file_name}
             </div>
