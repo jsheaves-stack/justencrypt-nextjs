@@ -103,3 +103,26 @@ export function uploadFilesRequest(files, path) {
         })
     });
 }
+
+export function uploadFolderRequest(folderName, path) {
+    return new Promise((resolve, reject) => {
+        const options = {
+            method: "PUT",
+            credentials: 'include'
+        };
+
+        fetch(`${API_URL}/folder/${path}/${folderName}`, options).then((res) => {
+            if (res.ok) {
+                getFolderRequest(path).then((res) => {
+                    return resolve(res);
+                }).catch((err) => {
+                    return reject(err);
+                });
+            } else {
+                return resolve(false);
+            }
+        }).catch((err) => {
+            return reject(err);
+        });
+    });
+}
