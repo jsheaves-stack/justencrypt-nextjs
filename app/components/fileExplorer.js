@@ -16,6 +16,7 @@ export default function FileExplorer(props) {
     const updatePath = (path) => setPath(sanitizePath(path));
 
     useEffect(() => {
+        setFolderContents([]);
         getFolderRequest(sanitizePath(path)).then((contents) => {
             setFolderContents(contents);
         }).catch((err) => {
@@ -60,7 +61,7 @@ export default function FileExplorer(props) {
     };
 
     return (
-        <div className="w-full h-full grid grid-rows-[4em,1fr] absolute">
+        <div className="w-full h-full grid grid-rows-[4em,1fr] absolute overflow-hidden">
             <div className="bg-mainAccent h-16 border-b-4 border-black content-center">
                 <div className="w-full mx-auto flex justify-between items-center">
                     <button
@@ -78,7 +79,7 @@ export default function FileExplorer(props) {
                 </div>
             </div>
             <div
-                className={`bg-bg h-full w-full${dragging ? " bg-white" : ""}`}
+                className={`bg-bg h-full w-full overflow-scroll ${dragging ? "bg-white" : ""}`}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}

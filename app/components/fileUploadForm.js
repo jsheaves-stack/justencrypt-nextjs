@@ -9,6 +9,8 @@ export default function FileUploadForm(props) {
     const [folderName, setFolderName] = useState("");
 
     useEffect(() => {
+        if (!files) return;
+
         uploadFilesRequest(files, props.path)
             .then((contents) => { props.setFolderContents(contents) })
             .catch((err) => console.error(err));

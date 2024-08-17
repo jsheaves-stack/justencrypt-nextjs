@@ -77,6 +77,8 @@ export function uploadFilesRequest(files, path) {
     return new Promise((resolve, reject) => {
         const uploadFilesPromises = [];
 
+        if (!files) return reject();
+
         for (let x = 0; x < files.length; x++) {
             const file = files[x];
 

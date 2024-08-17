@@ -1,6 +1,9 @@
 'use client'
 
+import { useState } from "react";
 import { sanitizePath } from "../utils/util";
+import { Controlled as ControlledZoom } from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 
 function downloadFile(url, filename) {
     fetch(url, { credentials: 'include' })
@@ -26,18 +29,36 @@ export default function File(props) {
     const api_url = process.env.NEXT_PUBLIC_JUSTENCRYPT_API_URL;
     const supported_images = ["APNG", "AVIF", "GIF", "JPG", "JPEG", "PNG", "SVG", "WebP"];
     const image_is_supported = supported_images.includes(props.file.file_extension.toUpperCase());
+    const [image_zoomed, set_image_zoomed] = useState(false);
+
+    const file_path = `${props.path}/${props.file.file_name}`;
+
+    const image_url = `${api_url}${sanitizePath(`${'/file'}/${file_path}`)}`;
+    const thumbnail_image_url = `${api_url}${sanitizePath(`${'/thumbnail'}/${file_path}`)}`;
 
     const handleDownload = (e) => {
-        const fileUrl = `${api_url}${sanitizePath(`file/${props.path}/${props.file.file_name}`)}`;
+        const fileUrl = `${api_url}${sanitizePath(`file/${file_path}`)}`;
         const filename = props.file.file_name;
 
         downloadFile(fileUrl, filename);
     };
 
     return (
-        <div className="w-40 h-40 cursor-pointer overflow-hidden rounded-base border-2 border-black bg-main font-base shadow-base" onClick={handleDownload}>
-            {<img className="w-full h-24 border-none" src={image_is_supported ? `${api_url}${sanitizePath(`thumbnail/${props.path}/${props.file.file_name}`)}` : ''} alt="" />}
-            <div className="text-sm w-full border-t-2 border-black p-2 truncate text-wrap text-ellipsis overflow-hidden">
+        <div className="w-56 h-60 cursor-pointer overflow-hidden rounded-base border-2 border-black bg-main font-base shadow-base">
+            {
+                <ControlledZoom
+                    isZoomed={image_zoomed}
+                    onZoomChange={(zoomed) => set_image_zoomed(zoomed)}
+                    zoomImg={{ src: image_is_supported ? image_url : '' }}
+                >
+                    <img
+                        className="w-full h-44 border-none object-contain"
+                        src={image_is_supported ? thumbnail_image_url : ''}
+                        alt=""
+                    />
+                </ControlledZoom>
+            }
+            <div className="text-sm w-full border-t-2 border-black p-2 truncate text-wrap text-ellipsis overflow-hidden" onClick={handleDownload}>
                 {props.file.file_name}
             </div>
         </div>
