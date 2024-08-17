@@ -13,10 +13,12 @@ export default function FileExplorer(props) {
     const [folderContents, setFolderContents] = useState([]);
     const [dragging, setDragging] = useState(false);
 
-    const updatePath = (path) => setPath(sanitizePath(path));
+    const updatePath = (path) => {
+        setFolderContents([]);
+        setPath(sanitizePath(path));
+    };
 
     useEffect(() => {
-        setFolderContents([]);
         getFolderRequest(sanitizePath(path)).then((contents) => {
             setFolderContents(contents);
         }).catch((err) => {
