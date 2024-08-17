@@ -13,9 +13,11 @@ export default function FileExplorer(props) {
     const [folderContents, setFolderContents] = useState([]);
     const [dragging, setDragging] = useState(false);
 
-    const updatePath = (path) => {
+    const updatePath = (newPath) => {
+        if (newPath == path) return;
+
         setFolderContents([]);
-        setPath(sanitizePath(path));
+        setPath(sanitizePath(newPath));
     };
 
     useEffect(() => {
@@ -61,7 +63,7 @@ export default function FileExplorer(props) {
     const handleDragLeave = () => {
         setDragging(false);
     };
-
+    console.log(popPath(path));
     return (
         <div className="w-full h-full grid grid-rows-[4em,1fr] absolute overflow-hidden">
             <div className="bg-mainAccent h-16 border-b-4 border-black content-center">
