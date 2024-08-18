@@ -93,10 +93,10 @@ export default function FileExplorer(props) {
                     {
                         folderContents.map((item, index) => {
                             return (
-                                <LazyLoadWrapper childClassName={'w-56 h-60'}>
+                                <LazyLoadWrapper key={index} childClassName={'w-56 h-60'}>
                                     {item.is_file ?
-                                        <File key={index} file={item} path={path} /> :
-                                        <Folder key={index} file={item} path={path} setPath={updatePath} />}
+                                        <File file={item} path={path} /> :
+                                        <Folder file={item} path={path} setPath={updatePath} />}
                                 </LazyLoadWrapper>
                             )
                         })
