@@ -1,32 +1,47 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       colors: {
-        bg: '#dfe5f2',
         main: '#88aaee',
-        mainAccent: '#4d80e6', // not needed for shadcn
+        mainAccent: '#4d80e6', // not needed for shadcn components
+        overlay: 'rgba(0,0,0,0.8)', // background color overlay for alert dialogs, modals, etc.
+
+        // light mode
+        bg: '#dfe5f2',
+        text: '#000',
+        border: '#000',
+
+        // dark mode
+        darkBg: '#272933',
+        darkText: '#eeefe9',
+        darkBorder: '#000',
+        secondaryBlack: '#1b1b1b', // opposite of plain white, not used pitch black because borders and box-shadows are that color
       },
       borderRadius: {
-        base: '5px'
+        base: '5px',
       },
       boxShadow: {
-        base: '4px 4px 0px 0px rgba(0,0,0,1)',
+        light: '4px 4px 0px 0px #000',
+        dark: '4px 4px 0px 0px #000',
       },
       translate: {
         boxShadowX: '4px',
         boxShadowY: '4px',
+        reverseBoxShadowX: '-4px',
+        reverseBoxShadowY: '-4px',
       },
       fontWeight: {
         base: '500',
         heading: '700',
-      }
-    }
+      },
+    },
   },
-  plugins: [],
+  plugins: ['prettier-plugin-tailwindcss'],
+  darkMode: ['selector'],
 };

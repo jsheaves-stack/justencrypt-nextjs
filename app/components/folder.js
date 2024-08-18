@@ -1,13 +1,15 @@
-'use client'
+'use client';
 
 export default function Folder(props) {
-
-    return (
-        <div className="w-56 h-60 overflow-hidden rounded-base border-2 border-black bg-main font-base shadow-base cursor-pointer" onClick={() => props.setPath(`${props.path}/${props.file.file_name}`)}>
-            <img className="w-full h-44" alt="" />
-            <div className="text-sm w-full border-t-2 border-black p-2 truncate text-wrap text-ellipsis overflow-hidden">
-                {props.file.file_name}
-            </div>
-        </div>
-    );
+  return (
+    <div
+      className="grid h-36 w-40 cursor-pointer grid-rows-1 overflow-hidden rounded-base border-2 border-black bg-main font-base shadow-light dark:shadow-dark"
+      onClick={() => props.setPath(`${props.path}/${props.file.file_name}`)}
+    >
+      <img className="h-full w-full" alt="" />
+      <div className="w-full overflow-hidden truncate text-ellipsis text-wrap border-t-2 border-black bg-bg p-2 text-sm text-text dark:bg-darkBg dark:text-darkText">
+        {props.file.file_name}
+      </div>
+    </div>
+  );
 }
