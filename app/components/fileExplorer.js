@@ -7,6 +7,7 @@ import { sanitizePath, popPath } from "../utils/util";
 import File from './file';
 import Folder from './folder';
 import FileUploadForm from "./fileUploadForm";
+import LazyLoadWrapper from "./lazyLoadWrapper";
 
 export default function FileExplorer(props) {
     const [path, setPath] = useState("/");
@@ -63,7 +64,7 @@ export default function FileExplorer(props) {
     const handleDragLeave = () => {
         setDragging(false);
     };
-    console.log(popPath(path));
+
     return (
         <div className="w-full h-full grid grid-rows-[4em,1fr] absolute overflow-hidden">
             <div className="bg-mainAccent h-16 border-b-4 border-black content-center">
@@ -91,9 +92,13 @@ export default function FileExplorer(props) {
                 <div className="w-full px-4 py-4 gap-4 flex flex-row flex-wrap h-min items-center justify-items-center">
                     {
                         folderContents.map((item, index) => {
-                            return item.is_file ?
-                                <File key={index} file={item} path={path} /> :
-                                <Folder key={index} file={item} path={path} setPath={updatePath} />
+                            return (
+                                <LazyLoadWrapper childClassName={'w-56 h-60'}>
+                                    {item.is_file ?
+                                        <File key={index} file={item} path={path} /> :
+                                        <Folder key={index} file={item} path={path} setPath={updatePath} />}
+                                </LazyLoadWrapper>
+                            )
                         })
                     }
                 </div>
