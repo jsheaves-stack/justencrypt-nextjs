@@ -45,7 +45,7 @@ export default function File(props) {
   };
 
   return (
-    <div className="grid h-full w-full cursor-pointer grid-rows-1 overflow-hidden rounded-base border-2 border-black bg-main font-base shadow-light dark:shadow-dark">
+    <div className="grid h-full w-full cursor-pointer grid-rows-1 overflow-hidden rounded-base border-2 border-black bg-main font-base shadow-base">
       {image_is_supported ? (
         <ControlledZoom
           isZoomed={image_zoomed}
@@ -59,12 +59,10 @@ export default function File(props) {
       )}
 
       <div
-        className="h-10 w-full overflow-hidden truncate text-ellipsis text-wrap border-t-2 border-black bg-bg p-2 text-sm dark:bg-darkBg"
+        className="h-10 w-full overflow-hidden truncate text-ellipsis text-wrap border-t-2 border-black bg-mainAccent p-2 text-sm"
         onClick={handleDownload}
       >
-        <span className="overflow-hidden truncate text-ellipsis text-wrap text-text dark:text-darkText">
-          {props.file.file_name}
-        </span>
+        <span className="overflow-hidden truncate text-ellipsis text-wrap text-text">{props.file.file_name}</span>
       </div>
     </div>
   );

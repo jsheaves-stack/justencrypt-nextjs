@@ -35,14 +35,13 @@ export function isDarkMode() {
 }
 
 export function changeTheme() {
-  const darkMode = isDarkMode();
-  const root = document.documentElement;
-
-  if (darkMode) {
-    root.classList.remove('dark');
-    root.classList.add('light');
-  } else {
-    root.classList.remove('light');
-    root.classList.add('dark');
-  }
+  // const darkMode = isDarkMode();
+  // const root = document.documentElement;
+  // if (darkMode) {
+  //   root.classList.remove('dark');
+  //   root.classList.add('light');
+  // } else {
+  //   root.classList.remove('light');
+  //   root.classList.add('dark');
+  // }
 }

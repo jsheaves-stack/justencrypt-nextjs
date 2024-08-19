@@ -16,6 +16,10 @@ export default function FileExplorer(props) {
   const [path, setPath] = useState('/');
   const [folderContents, setFolderContents] = useState([]);
   const [dragging, setDragging] = useState(false);
+  const [currentTheme, setCurrentTheme] = useState('dark');
+
+  changeTheme(currentTheme);
+
   const isDark = isDarkMode();
 
   const updatePath = (newPath) => {
@@ -75,23 +79,23 @@ export default function FileExplorer(props) {
 
   return (
     <div className="absolute grid h-full w-full grid-rows-[4em,1fr] overflow-hidden">
-      <div className="h-16 content-center border-b-4 border-black bg-mainAccent">
+      <div className="h-16 content-center border-b-4 border-black bg-bg">
         <div className="mx-auto flex w-full items-center justify-between">
           <button
-            className={`text-align-center w-18 ml-2 flex cursor-pointer rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-light transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:shadow-dark`}
+            className={`text-align-center w-18 ml-2 flex cursor-pointer rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none`}
             onClick={() => updatePath(popPath(path))}
           >
             Back
           </button>
           <div className="flex items-center justify-between">
-            <button
-              className="text-align-center w-18 mr-3 flex cursor-pointer rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-light transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:shadow-dark"
-              onClick={() => changeTheme()}
+            {/* <button
+              className="text-align-center w-18 mr-3 flex cursor-pointer rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+              onClick={() => setCurrentTheme(currentTheme == 'dark' ? 'light' : 'dark')}
             >
               <img src={isDark ? SunIcon.src : MoonIcon.src}></img>
-            </button>
+            </button> */}
             <button
-              className="text-align-center w-18 mr-3 flex cursor-pointer rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-light transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:shadow-dark"
+              className="text-align-center w-18 mr-3 flex cursor-pointer rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
               onClick={() => props.submitLogout()}
             >
               Logout
@@ -100,7 +104,7 @@ export default function FileExplorer(props) {
         </div>
       </div>
       <div
-        className={`h-full w-full overflow-scroll bg-bg dark:bg-darkBg ${dragging ? 'bg-white' : ''}`}
+        className={`h-full w-full overflow-scroll bg-bg ${dragging ? 'bg-white' : ''}`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}

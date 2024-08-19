@@ -8,6 +8,204 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+.blue-light {
+  --main: #88aaee;
+  --main-accent: #4d80e6;
+  --bg-color: #dfe5f2;
+  --text-color: #000;
+  --border-color: #000;
+  --secondary-black: #1b1b1b;
+  --box-shadow: 4px 4px 0px 0px #000;
+  --overlay: rgba(0, 0, 0, 0.8);
+}
+
+.blue-dark {
+  --main: #88aaee;
+  --main-accent: #4d80e6;
+  --bg-color: #272933;
+  --text-color: #eeefe9;
+  --border-color: #000;
+  --secondary-black: #1b1b1b;
+  --box-shadow: 4px 4px 0px 0px #000;
+  --overlay: rgba(0, 0, 0, 0.8);
+}
+
+.green-purple-light {
+  --main: #c4a1ff;
+  --main-accent: #9e66ff;
+  --bg-color: #daf5f0;
+  --text-color: #000;
+  --border-color: #000;
+  --secondary-black: #1b1b1b;
+  --box-shadow: 4px 4px 0px 0px #000;
+  --overlay: rgba(0, 0, 0, 0.8);
+}
+
+.green-purple-dark {
+  --main: #c4a1ff;
+  --main-accent: #9e66ff;
+  --bg-color: #0f3730;
+  --text-color: #eeefe9;
+  --border-color: #000;
+  --secondary-black: #1b1b1b;
+  --box-shadow: 4px 4px 0px 0px #000;
+  --overlay: rgba(0, 0, 0, 0.8);
+}
+
+.orange-light {
+  --main: #fd9745;
+  --main-accent: #fc7303;
+  --bg-color: #fff4e0;
+  --text-color: #000;
+  --border-color: #000;
+  --secondary-black: #1b1b1b;
+  --box-shadow: 4px 4px 0px 0px #000;
+  --overlay: rgba(0, 0, 0, 0.8);
+}
+
+.orange-dark {
+  --main: #fd9745;
+  --main-accent: #fc7303;
+  --bg-color: #1d1f27;
+  --text-color: #eeefe9;
+  --border-color: #000;
+  --secondary-black: #1b1b1b;
+  --box-shadow: 4px 4px 0px 0px #000;
+  --overlay: rgba(0, 0, 0, 0.8);
+}
+
+.green-light {
+  --main: #7fbc8c;
+  --main-accent: #58a769;
+  --bg-color: #daf5f0;
+  --text-color: #000;
+  --border-color: #000;
+  --secondary-black: #1b1b1b;
+  --box-shadow: 4px 4px 0px 0px #000;
+  --overlay: rgba(0, 0, 0, 0.8);
+}
+
+.green-dark {
+  --main: #7fbc8c;
+  --main-accent: #58a769;
+  --bg-color: #0b2823;
+  --text-color: #eeefe9;
+  --border-color: #000;
+  --secondary-black: #1b1b1b;
+  --box-shadow: 4px 4px 0px 0px #000;
+  --overlay: rgba(0, 0, 0, 0.8);
+}
+
+.yellow-light {
+  --main: #ffdc58;
+  --main-accent: #ffc800;
+  --bg-color: #fef2e8;
+  --text-color: #000;
+  --border-color: #000;
+  --secondary-black: #1b1b1b;
+  --box-shadow: 4px 4px 0px 0px #000;
+  --overlay: rgba(0, 0, 0, 0.8);
+}
+
+.yellow-dark {
+  --main: #ffdc58;
+  --main-accent: #ffc800;
+  --bg-color: #374151;
+  --text-color: #eeefe9;
+  --border-color: #000;
+  --secondary-black: #1b1b1b;
+  --box-shadow: 4px 4px 0px 0px #000;
+  --overlay: rgba(0, 0, 0, 0.8);
+}
+
+.salmon-light {
+  --main: #ff6b6b;
+  --main-accent: #ff3333;
+  --bg-color: #fcd7d7;
+  --text-color: #000;
+  --border-color: #000;
+  --secondary-black: #1b1b1b;
+  --box-shadow: 4px 4px 0px 0px #000;
+  --overlay: rgba(0, 0, 0, 0.8);
+}
+
+.salmon-dark {
+  --main: #ff6b6b;
+  --main-accent: #ff3333;
+  --bg-color: #1d1f27;
+  --text-color: #eeefe9;
+  --border-color: #000;
+  --secondary-black: #1b1b1b;
+  --box-shadow: 4px 4px 0px 0px #000;
+  --overlay: rgba(0, 0, 0, 0.8);
+}
+
+.purple-light {
+  --main: #bd52eb;
+  --main-accent: #a81be4;
+  --bg-color: #e3dff2;
+  --text-color: #000;
+  --border-color: #000;
+  --secondary-black: #1b1b1b;
+  --box-shadow: 4px 4px 0px 0px #000;
+  --overlay: rgba(0, 0, 0, 0.8);
+}
+
+.purple-dark {
+  --main: #bd52eb;
+  --main-accent: #a81be4;
+  --bg-color: #1d1f27;
+  --text-color: #eeefe9;
+  --border-color: #000;
+  --secondary-black: #1b1b1b;
+  --box-shadow: 4px 4px 0px 0px #000;
+  --overlay: rgba(0, 0, 0, 0.8);
+}
+
+.lime-light {
+  --main: #a3e636;
+  --main-accent: #88cc19;
+  --bg-color: #e0e7f1;
+  --text-color: #000;
+  --border-color: #000;
+  --secondary-black: #1b1b1b;
+  --box-shadow: 4px 4px 0px 0px #000;
+  --overlay: rgba(0, 0, 0, 0.8);
+}
+
+.lime-dark {
+  --main: #a3e636;
+  --main-accent: #88cc19;
+  --bg-color: #111903;
+  --text-color: #eeefe9;
+  --border-color: #000;
+  --secondary-black: #1b1b1b;
+  --box-shadow: 4px 4px 0px 0px #000;
+  --overlay: rgba(0, 0, 0, 0.8);
+}
+
+.lavender-light {
+  --main: #a388ee;
+  --main-accent: #9e66ff;
+  --bg-color: #e3dff2;
+  --text-color: #000;
+  --border-color: #000;
+  --secondary-black: #1b1b1b;
+  --box-shadow: 4px 4px 0px 0px #000;
+  --overlay: rgba(0, 0, 0, 0.8);
+}
+
+.lavender-dark {
+  --main: #a388ee;
+  --main-accent: #9e66ff;
+  --bg-color: #1d1f27;
+  --text-color: #eeefe9;
+  --border-color: #000;
+  --secondary-black: #1b1b1b;
+  --box-shadow: 4px 4px 0px 0px #000;
+  --overlay: rgba(0, 0, 0, 0.8);
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;

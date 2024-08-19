@@ -31,7 +31,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex h-full w-full select-none flex-col items-center justify-between bg-bg text-black dark:bg-darkBg">
+    <main className="flex h-full w-full select-none flex-col items-center justify-between bg-bg text-black">
       {initialLoad ? (
         <div className="absolute inset-0 flex items-center justify-center bg-bg text-lg">Loading...</div>
       ) : authenticated ? (

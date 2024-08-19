@@ -29,7 +29,7 @@ export default function FileUploadForm(props) {
   return (
     <div className="fixed bottom-2 right-1 rounded px-4 py-2 font-bold">
       {showUploadFile && (
-        <div className="relative mb-3 grid h-min w-min content-center justify-items-center gap-5 rounded-base border-2 border-black bg-mainAccent p-2 pb-6 shadow-light dark:shadow-dark">
+        <div className="relative mb-3 grid h-min w-min content-center justify-items-center gap-5 rounded-base border-2 border-black bg-mainAccent p-2 pb-6 shadow-base">
           <div className="h-full w-40">
             <input
               id="file-upload"
@@ -41,7 +41,7 @@ export default function FileUploadForm(props) {
 
             <label
               htmlFor="file-upload"
-              className="w-30 absolute left-3 top-3 cursor-pointer rounded-base border-2 border-black bg-main px-4 py-2 font-base shadow-light transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:shadow-dark"
+              className="w-30 absolute left-3 top-3 cursor-pointer rounded-base border-2 border-black bg-main px-4 py-2 font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
             >
               Upload File
             </label>
@@ -55,7 +55,7 @@ export default function FileUploadForm(props) {
             />
 
             <button
-              className="mt-2 cursor-pointer rounded-base border-2 border-black bg-main px-2 py-2 font-base shadow-light transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:shadow-dark"
+              className="mt-2 cursor-pointer rounded-base border-2 border-black bg-main px-2 py-2 font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
               onClick={() => createFolder()}
             >
               Create Folder
@@ -65,7 +65,7 @@ export default function FileUploadForm(props) {
       )}
 
       <button
-        className="text-align-center w-18 ml-auto flex cursor-pointer rounded-base border-2 border-black bg-main px-4 py-2 text-lg font-base shadow-light transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:shadow-dark"
+        className="text-align-center w-18 ml-auto flex cursor-pointer rounded-base border-2 border-black bg-main px-4 py-2 text-lg font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
         onClick={() => setShowUploadFile(!showUploadFile)}
       >
         +
