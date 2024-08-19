@@ -6,7 +6,7 @@ export default function LazyLoadWrapper(props) {
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
-      if (!isVisible) setIsVisible(entry.isIntersecting);
+      if (!isVisible && entry.isIntersecting) setIsVisible(true);
     });
 
     if (ref.current) observer.observe(ref.current);
