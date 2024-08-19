@@ -2,17 +2,21 @@
 
 import { useEffect, useState } from 'react';
 import { getFolderRequest, uploadFilesRequest } from '../requests/requests';
-import { sanitizePath, popPath } from '../utils/util';
+import { sanitizePath, popPath, isDarkMode, changeTheme } from '../utils/util';
 
 import File from './file';
 import Folder from './folder';
 import FileUploadForm from './fileUploadForm';
 import LazyLoadWrapper from './lazyLoadWrapper';
 
+import SunIcon from '../assets/icons/sun-light.svg';
+import MoonIcon from '../assets/icons/half-moon.svg';
+
 export default function FileExplorer(props) {
   const [path, setPath] = useState('/');
   const [folderContents, setFolderContents] = useState([]);
   const [dragging, setDragging] = useState(false);
+  const isDark = isDarkMode();
 
   const updatePath = (newPath) => {
     if (newPath == path) return;
@@ -79,12 +83,20 @@ export default function FileExplorer(props) {
           >
             Back
           </button>
-          <button
-            className="text-align-center w-18 mr-3 flex cursor-pointer rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-light transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:shadow-dark"
-            onClick={() => props.submitLogout()}
-          >
-            Logout
-          </button>
+          <div className="flex items-center justify-between">
+            <button
+              className="text-align-center w-18 mr-3 flex cursor-pointer rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-light transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:shadow-dark"
+              onClick={() => changeTheme()}
+            >
+              <img src={isDark ? SunIcon.src : MoonIcon.src}></img>
+            </button>
+            <button
+              className="text-align-center w-18 mr-3 flex cursor-pointer rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-light transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:shadow-dark"
+              onClick={() => props.submitLogout()}
+            >
+              Logout
+            </button>
+          </div>
         </div>
       </div>
       <div

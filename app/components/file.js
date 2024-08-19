@@ -28,7 +28,8 @@ function downloadFile(url, filename) {
 export default function File(props) {
   const api_url = process.env.NEXT_PUBLIC_JUSTENCRYPT_API_URL;
   const supported_images = ['APNG', 'AVIF', 'GIF', 'JPG', 'JPEG', 'PNG', 'SVG', 'WebP'];
-  const image_is_supported = supported_images.includes(props.file.file_extension.toUpperCase());
+  const file_extension = props.file.file_extension.toUpperCase();
+  const image_is_supported = supported_images.includes(file_extension);
   const [image_zoomed, set_image_zoomed] = useState(false);
 
   const file_path = `${props.path}/${props.file.file_name}`;
@@ -45,19 +46,18 @@ export default function File(props) {
 
   return (
     <div className="grid h-full w-full cursor-pointer grid-rows-1 overflow-hidden rounded-base border-2 border-black bg-main font-base shadow-light dark:shadow-dark">
-      {
+      {image_is_supported ? (
         <ControlledZoom
           isZoomed={image_zoomed}
           onZoomChange={(zoomed) => set_image_zoomed(zoomed)}
-          zoomImg={{ src: image_is_supported ? image_url : '' }}
+          zoomImg={{ src: image_url }}
         >
-          <img
-            className="h-full w-full border-none object-contain"
-            src={image_is_supported ? thumbnail_image_url : ''}
-            alt=""
-          />
+          <img className="h-[6.25em] w-full border-none object-contain" src={thumbnail_image_url} alt="" />
         </ControlledZoom>
-      }
+      ) : (
+        <div className="grid h-full w-full items-center justify-items-center text-4xl">{file_extension}</div>
+      )}
+
       <div
         className="h-10 w-full overflow-hidden truncate text-ellipsis text-wrap border-t-2 border-black bg-bg p-2 text-sm dark:bg-darkBg"
         onClick={handleDownload}

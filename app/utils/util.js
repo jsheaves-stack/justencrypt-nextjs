@@ -27,3 +27,22 @@ export function popPath(path) {
   // Join the segments back into a path, ensuring the root path is '/'
   return segments.length > 1 ? '/' + segments.join('/') : '/';
 }
+
+export function isDarkMode() {
+  const root = document.documentElement;
+
+  return root.classList.contains('dark');
+}
+
+export function changeTheme() {
+  const darkMode = isDarkMode();
+  const root = document.documentElement;
+
+  if (darkMode) {
+    root.classList.remove('dark');
+    root.classList.add('light');
+  } else {
+    root.classList.remove('light');
+    root.classList.add('dark');
+  }
+}
