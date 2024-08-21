@@ -7,10 +7,12 @@ import { sanitizePath, popPath } from '../utils/util';
 import File from './file';
 import Folder from './folder';
 import LazyLoadWrapper from './lazyLoadWrapper';
+import CreateFolderModal from './createFolderModal';
 
 import CreateFolder from '../assets/icons/folder-plus.svg';
 import AddFile from '../assets/icons/plus-square.svg';
-import CreateFolderModal from './createFolderModal';
+import Logout from '../assets/icons/log-out.svg';
+import Back from '../assets/icons/arrow-left-circle.svg';
 
 export default function FileExplorer(props) {
   const [path, setPath] = useState('/');
@@ -96,10 +98,11 @@ export default function FileExplorer(props) {
       <div className="h-16 content-center border-b-4 border-black bg-bg">
         <div className="mx-auto flex w-full items-center justify-between">
           <button
-            className="text-align-center w-18 ml-2 flex cursor-pointer rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+            className="text-align-center w-18 align-center ml-4 flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
             onClick={() => updatePath(popPath(path))}
           >
-            Back
+            <img src={Back.src}></img>
+            <span className="hidden sm:block">Back</span>
           </button>
           <div className="mr-4 flex items-center justify-between gap-4">
             <input
@@ -114,7 +117,7 @@ export default function FileExplorer(props) {
               className="text-align-center w-18 align-center flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
             >
               <img src={AddFile.src}></img>
-              <span>Add File</span>
+              <span className="hidden sm:block">Add File</span>
             </label>
             <button
               className="text-align-center w-18 align-center flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
@@ -123,13 +126,14 @@ export default function FileExplorer(props) {
               }}
             >
               <img src={CreateFolder.src}></img>
-              <span>Create Folder</span>
+              <span className="hidden sm:block">Create Folder</span>
             </button>
             <button
-              className="text-align-center w-18 flex h-10 cursor-pointer rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+              className="text-align-center w-18 align-center flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
               onClick={() => props.submitLogout()}
             >
-              Logout
+              <img src={Logout.src}></img>
+              <span className="hidden sm:block">Logout</span>
             </button>
           </div>
         </div>
