@@ -6,13 +6,18 @@ import { sanitizePath, popPath } from '../utils/util';
 
 import File from './file';
 import Folder from './folder';
-import FileUploadForm from './fileUploadForm';
 import LazyLoadWrapper from './lazyLoadWrapper';
+
+import CreateFolder from '../assets/icons/folder-plus.svg';
+import AddFile from '../assets/icons/plus-square-solid.svg';
+import CreateFolderModal from './createFolderModal';
 
 export default function FileExplorer(props) {
   const [path, setPath] = useState('/');
   const [folderContents, setFolderContents] = useState([]);
   const [dragging, setDragging] = useState(false);
+  const [files, setFiles] = useState(null);
+  const [showCreateFolderModal, setShowCreateFolderModal] = useState(false);
 
   const updatePath = (newPath) => {
     if (newPath == path) return;
@@ -20,6 +25,16 @@ export default function FileExplorer(props) {
     setFolderContents([]);
     setPath(sanitizePath(newPath));
   };
+
+  useEffect(() => {
+    if (!files) return;
+
+    uploadFilesRequest(files, path)
+      .then((contents) => {
+        setFolderContents(contents);
+      })
+      .catch((err) => console.error(err));
+  }, [files]);
 
   useEffect(() => {
     getFolderRequest(sanitizePath(path))
@@ -71,17 +86,47 @@ export default function FileExplorer(props) {
 
   return (
     <div className="absolute grid h-full w-full grid-rows-[4em,1fr] overflow-hidden">
+      {showCreateFolderModal && (
+        <CreateFolderModal
+          path={path}
+          closeModal={() => setShowCreateFolderModal(false)}
+          setFolderContents={(contents) => setFolderContents(contents)}
+        />
+      )}
       <div className="h-16 content-center border-b-4 border-black bg-bg">
         <div className="mx-auto flex w-full items-center justify-between">
           <button
-            className={`text-align-center w-18 ml-2 flex cursor-pointer rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none`}
+            className="text-align-center w-18 ml-2 flex cursor-pointer rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
             onClick={() => updatePath(popPath(path))}
           >
             Back
           </button>
-          <div className="flex items-center justify-between">
+          <div className="mr-4 flex items-center justify-between gap-4">
+            <input
+              id="file-upload"
+              className="inset-0 hidden h-10 w-32 cursor-pointer opacity-0"
+              type="file"
+              multiple={true}
+              onChange={(e) => setFiles(e.target.files)}
+            />
+            <label
+              htmlFor="file-upload"
+              className="text-align-center w-18 align-center flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+            >
+              <img src={AddFile.src}></img>
+              <span>Add File</span>
+            </label>
             <button
-              className="text-align-center w-18 mr-3 flex cursor-pointer rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+              className="text-align-center w-18 align-center flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+              onClick={() => {
+                setShowCreateFolderModal(true);
+              }}
+            >
+              <img src={CreateFolder.src}></img>
+              <span>Create Folder</span>
+            </button>
+            <button
+              className="text-align-center w-18 flex h-10 cursor-pointer rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
               onClick={() => props.submitLogout()}
             >
               Logout
@@ -109,8 +154,6 @@ export default function FileExplorer(props) {
           })}
         </div>
       </div>
-
-      <FileUploadForm path={path} setFolderContents={setFolderContents} />
     </div>
   );
 }
