@@ -9,7 +9,7 @@ import Folder from './folder';
 import LazyLoadWrapper from './lazyLoadWrapper';
 
 import CreateFolder from '../assets/icons/folder-plus.svg';
-import AddFile from '../assets/icons/plus-square-solid.svg';
+import AddFile from '../assets/icons/plus-square.svg';
 import CreateFolderModal from './createFolderModal';
 
 export default function FileExplorer(props) {
