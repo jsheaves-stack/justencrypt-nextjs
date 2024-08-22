@@ -144,7 +144,7 @@ export default function FileExplorer(props) {
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
-        <div className="flex h-min w-full flex-row flex-wrap items-center justify-items-center gap-4 px-4 py-4">
+        <div className="flex h-min w-full flex-row flex-wrap items-center justify-items-center gap-2 px-2 py-2 sm:gap-4 sm:px-4 sm:py-4">
           {folderContents.map((item, index) => {
             return (
               <LazyLoadWrapper key={index} childClassName={'w-40 h-36'}>
