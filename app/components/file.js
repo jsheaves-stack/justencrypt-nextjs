@@ -19,8 +19,6 @@ export default function File(props) {
   const image_url = `${api_url}${sanitizePath(`${'/file'}/${file_path}`)}`;
   const thumbnail_image_url = `${api_url}${sanitizePath(`${'/thumbnail'}/${file_path}`)}`;
 
-  console.log('image zoomed: ', imageZoomed);
-
   return (
     <div className="relative grid h-full w-full cursor-pointer grid-rows-1 overflow-hidden rounded-base border-2 border-black bg-main font-base shadow-base">
       {image_is_supported ? (
