@@ -12,7 +12,7 @@ export default function LoginForm(props) {
   const submitLogin = (e) => {
     e.preventDefault();
 
-    if (!loading) setLoading(true);
+    setLoading(true);
 
     submitLoginRequest(username, password)
       .then((authenticated) => {
@@ -22,7 +22,7 @@ export default function LoginForm(props) {
         console.error(err);
       })
       .finally(() => {
-        if (loading) setLoading(false);
+        setLoading(false);
       });
   };
 

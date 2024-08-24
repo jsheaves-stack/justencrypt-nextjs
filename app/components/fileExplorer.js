@@ -147,7 +147,7 @@ export default function FileExplorer(props) {
         <div className="flex h-min w-full flex-row flex-wrap items-center justify-items-center gap-2 px-2 py-2 sm:gap-4 sm:px-4 sm:py-4">
           {folderContents.map((item, index) => {
             return (
-              <LazyLoadWrapper key={index} childClassName={'w-40 h-36'}>
+              <LazyLoadWrapper key={index} childClassName={'w-40 h-36 sm:w-52 sm:h-40'}>
                 {item.is_file ? (
                   <File file={item} path={path} />
                 ) : (

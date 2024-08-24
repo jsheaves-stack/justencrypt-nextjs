@@ -5,7 +5,7 @@ import FolderIcon from '../assets/icons/folder.svg';
 export default function Folder(props) {
   return (
     <div
-      className="grid h-36 w-40 cursor-pointer grid-rows-1 overflow-hidden rounded-base border-2 border-black bg-main font-base shadow-base"
+      className="grid h-full w-full cursor-pointer grid-rows-1 overflow-hidden rounded-base border-2 border-black bg-main font-base shadow-base"
       onClick={() => props.setPath(`${props.path}/${props.file.file_name}`)}
     >
       <div className="grid h-full w-full items-center">

@@ -28,7 +28,7 @@ export default function File(props) {
           zoomImg={{ src: image_url }}
         >
           <img
-            className={`block h-[6.25em] w-full border-none object-contain ${imageLoading ? 'hidden' : ''}`}
+            className={`block h-[6.25] w-full border-none object-contain sm:h-[7.25em] ${imageLoading ? 'hidden' : ''}`}
             src={thumbnail_image_url}
             alt=""
             onLoad={() => {
@@ -36,7 +36,7 @@ export default function File(props) {
             }}
           />
           {imageLoading && (
-            <div className="relative block h-[6.4rem] w-full content-center justify-center">
+            <div className="relative block h-[6.25] w-full content-center justify-center sm:h-[7.4rem]">
               <div className="relative h-16 w-full content-center justify-center">
                 <Loading showText={false} />
               </div>
