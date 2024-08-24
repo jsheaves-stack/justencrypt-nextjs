@@ -3,29 +3,47 @@
 import { useState } from 'react';
 import { sanitizePath } from '../utils/util';
 import { Controlled as ControlledZoom } from 'react-medium-image-zoom';
+import Loading from './loading';
 import 'react-medium-image-zoom/dist/styles.css';
 
 export default function File(props) {
   const api_url = process.env.NEXT_PUBLIC_JUSTENCRYPT_API_URL;
-  const supported_images = ['APNG', 'AVIF', 'GIF', 'JPG', 'JPEG', 'PNG', 'SVG', 'WebP'];
+  const supportedImages = ['APNG', 'AVIF', 'GIF', 'JPG', 'JPEG', 'PNG', 'SVG', 'WebP'];
   const file_extension = props.file.file_extension.toUpperCase();
-  const image_is_supported = supported_images.includes(file_extension);
-  const [image_zoomed, set_image_zoomed] = useState(false);
+  const image_is_supported = supportedImages.includes(file_extension);
+  const [imageZoomed, setImageZoomed] = useState(false);
+  const [imageLoading, setImageLoading] = useState(image_is_supported);
 
   const file_path = `${props.path}/${props.file.file_name}`;
 
   const image_url = `${api_url}${sanitizePath(`${'/file'}/${file_path}`)}`;
   const thumbnail_image_url = `${api_url}${sanitizePath(`${'/thumbnail'}/${file_path}`)}`;
 
+  console.log('image zoomed: ', imageZoomed);
+
   return (
-    <div className="grid h-full w-full cursor-pointer grid-rows-1 overflow-hidden rounded-base border-2 border-black bg-main font-base shadow-base">
+    <div className="relative grid h-full w-full cursor-pointer grid-rows-1 overflow-hidden rounded-base border-2 border-black bg-main font-base shadow-base">
       {image_is_supported ? (
         <ControlledZoom
-          isZoomed={image_zoomed}
-          onZoomChange={(zoomed) => set_image_zoomed(zoomed)}
+          isZoomed={imageLoading ? false : imageZoomed}
+          onZoomChange={(zoomed) => setImageZoomed(imageLoading ? false : zoomed)}
           zoomImg={{ src: image_url }}
         >
-          <img className="h-[6.25em] w-full border-none object-contain" src={thumbnail_image_url} alt="" />
+          <img
+            className={`block h-[6.25em] w-full border-none object-contain ${imageLoading ? 'hidden' : ''}`}
+            src={thumbnail_image_url}
+            alt=""
+            onLoad={() => {
+              setImageLoading(false);
+            }}
+          />
+          {imageLoading && (
+            <div className="relative block h-[6.4rem] w-full content-center justify-center">
+              <div className="relative h-16 w-full content-center justify-center">
+                <Loading showText={false} />
+              </div>
+            </div>
+          )}
         </ControlledZoom>
       ) : (
         <div className="grid h-full w-full items-center justify-items-center text-4xl">{file_extension}</div>

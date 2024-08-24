@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import LoginForm from './components/loginForm';
 import FileExplorer from './components/fileExplorer';
+import Loading from './components/loading';
+
 import { checkAuthRequest, submitLogoutRequest } from './requests/requests';
 
 export default function Home() {
@@ -31,9 +33,11 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex h-full w-full select-none flex-col items-center justify-between bg-bg text-black">
+    <main className="absolute flex h-full w-full select-none flex-col content-center items-center justify-center bg-bg text-black">
       {initialLoad ? (
-        <div className="absolute inset-0 flex items-center justify-center bg-bg text-lg text-text">Loading...</div>
+        <div className="relative h-16 w-60">
+          <Loading />
+        </div>
       ) : authenticated ? (
         <FileExplorer submitLogout={submitLogout} />
       ) : (
