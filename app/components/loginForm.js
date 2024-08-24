@@ -17,11 +17,12 @@ export default function LoginForm(props) {
     submitLoginRequest(username, password)
       .then((authenticated) => {
         props.setAuthenticated(authenticated);
-
-        if (loading) setLoading(false);
       })
       .catch((err) => {
         console.error(err);
+      })
+      .finally(() => {
+        if (loading) setLoading(false);
       });
   };
 
