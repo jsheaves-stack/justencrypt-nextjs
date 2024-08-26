@@ -83,6 +83,16 @@ export default function FileExplorer(props) {
 
   const sortedFolderContents = getSortedFolderContents(folderContents, sortType, sortDirection);
 
+  const getSortDirectionIcon = () => {
+    switch (sortDirection) {
+      default:
+      case sortDirections.Ascending:
+        return SortUp.src;
+      case sortDirections.Descending:
+        return SortDown.src;
+    }
+  };
+
   const updatePath = (newPath) => {
     if (newPath == path) return;
 
@@ -182,7 +192,7 @@ export default function FileExplorer(props) {
       <div className="h-16 content-center border-b-4 border-black bg-bg">
         <div className="mx-auto flex w-full items-center justify-between">
           <button
-            className="text-align-center w-18 align-center ml-4 flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+            className="text-align-center align-center ml-4 flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
             onClick={() => updatePath(popPath(path))}
           >
             <img src={Back.src}></img>
@@ -198,13 +208,13 @@ export default function FileExplorer(props) {
             />
             <label
               htmlFor="file-upload"
-              className="text-align-center w-18 align-center flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+              className="text-align-center align-center flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
             >
               <img src={AddFile.src}></img>
               <span className="hidden sm:block">Add File</span>
             </label>
             <button
-              className="text-align-center w-18 align-center flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+              className="text-align-center align-center flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
               onClick={() => {
                 setShowCreateFolderModal(true);
               }}
@@ -213,7 +223,7 @@ export default function FileExplorer(props) {
               <span className="hidden sm:block">Create Folder</span>
             </button>
             <button
-              className="text-align-center w-18 align-center flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+              className="text-align-center align-center flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
               onClick={() => props.submitLogout()}
             >
               <img src={Logout.src}></img>
@@ -231,18 +241,18 @@ export default function FileExplorer(props) {
         <div className="grid h-14 w-full justify-items-end">
           <div className="mr-4 grid h-full grid-cols-2 items-end gap-4">
             <button
-              className="text-align-center align-center flex grid h-10 w-32 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+              className="text-align-center align-center flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none sm:w-40"
               onClick={() => updateSortType()}
             >
               <img src={Sort.src}></img>
-              <span>{sortTypes[sortType]}</span>
+              <span className="hidden sm:block">{sortTypes[sortType]}</span>
             </button>
             <button
-              className="text-align-center align-center flex grid h-10 w-32 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+              className="text-align-center align-center flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none sm:w-40"
               onClick={() => updateSortDirection()}
             >
-              <img src={SortUp.src}></img>
-              <span>{sortDirections[sortDirection]}</span>
+              <img src={getSortDirectionIcon()}></img>
+              <span className="hidden sm:block">{sortDirections[sortDirection]}</span>
             </button>
           </div>
         </div>
