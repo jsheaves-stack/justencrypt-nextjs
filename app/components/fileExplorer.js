@@ -223,7 +223,7 @@ export default function FileExplorer(props) {
         </div>
       </div>
       <div
-        className={`grid-rows-[min-content, 1fr] grid h-full w-full gap-4 overflow-scroll bg-bg ${dragging ? 'bg-white' : ''}`}
+        className={`grid h-full w-full grid-rows-[min-content,1fr] gap-4 overflow-scroll bg-bg ${dragging ? 'bg-white' : ''}`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
@@ -246,18 +246,20 @@ export default function FileExplorer(props) {
             </button>
           </div>
         </div>
-        <div className="flex h-min w-full flex-row flex-wrap items-center justify-items-center gap-2 px-2 pb-2 sm:gap-4 sm:px-4 sm:pb-4">
-          {(sortedFolderContents ? sortedFolderContents : []).map((item, index) => {
-            return (
-              <LazyLoadWrapper key={index} childClassName={'w-40 h-36 sm:w-52 sm:h-40'}>
-                {item.is_file ? (
-                  <File file={item} path={path} />
-                ) : (
-                  <Folder file={item} path={path} setPath={updatePath} />
-                )}
-              </LazyLoadWrapper>
-            );
-          })}
+        <div className="h-full w-full">
+          <div className="flex h-min w-full flex-row flex-wrap items-center justify-items-center gap-2 px-2 pb-2 sm:gap-4 sm:px-4 sm:pb-4">
+            {(sortedFolderContents ? sortedFolderContents : []).map((item, index) => {
+              return (
+                <LazyLoadWrapper key={index} childClassName={'w-40 h-36 sm:w-52 sm:h-40'}>
+                  {item.is_file ? (
+                    <File file={item} path={path} />
+                  ) : (
+                    <Folder file={item} path={path} setPath={updatePath} />
+                  )}
+                </LazyLoadWrapper>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
