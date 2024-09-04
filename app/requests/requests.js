@@ -121,6 +121,30 @@ export function uploadFilesRequest(files, path) {
   });
 }
 
+export function deleteFileRequest(fileName, path) {
+  return new Promise((resolve, reject) => {
+    const options = { method: 'DELETE', credentials: 'include' };
+
+    fetch(`${API_URL}/file${path}/${fileName}`, options)
+      .then((res) => {
+        if (res.ok) {
+          getFolderRequest(path)
+            .then((res) => {
+              return resolve(res);
+            })
+            .catch((err) => {
+              return reject(err);
+            });
+        } else {
+          return reject('');
+        }
+      })
+      .catch((err) => {
+        return reject(err);
+      });
+  });
+}
+
 export function uploadFolderRequest(folderName, path) {
   return new Promise((resolve, reject) => {
     const options = {

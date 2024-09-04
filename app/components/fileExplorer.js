@@ -262,7 +262,7 @@ export default function FileExplorer(props) {
               return (
                 <LazyLoadWrapper key={index} childClassName={'w-40 h-36 sm:w-52 sm:h-40'}>
                   {item.is_file ? (
-                    <File file={item} path={path} />
+                    <File file={item} path={path} setFolderContents={setFolderContents} />
                   ) : (
                     <Folder file={item} path={path} setPath={updatePath} />
                   )}
