@@ -59,7 +59,7 @@ export default function File(props) {
           zoomImg={{ src: image_url }}
         >
           <img
-            className={`block h-[6.25] w-full border-none object-contain sm:h-[7.25em] ${imageLoading ? 'hidden' : ''}`}
+            className={`block h-[6.25rem] w-full border-none object-contain sm:h-[7.25em] ${imageLoading ? 'hidden' : ''}`}
             src={thumbnail_image_url}
             alt=""
             onLoad={() => {
