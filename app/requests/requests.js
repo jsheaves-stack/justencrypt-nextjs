@@ -1,3 +1,5 @@
+import { sanitizePath } from '../utils/util';
+
 const API_URL = process.env.NEXT_PUBLIC_JUSTENCRYPT_API_URL;
 
 export function checkAuthRequest() {
@@ -104,7 +106,7 @@ export function uploadFilesRequest(files, path) {
         },
       };
 
-      uploadFilesPromises.push(fetch(`${API_URL}/file${path}${fileName}`, options));
+      uploadFilesPromises.push(fetch(`${API_URL}${sanitizePath(`/file${path}/${fileName}`)}`, options));
     }
 
     Promise.all(uploadFilesPromises)
@@ -154,7 +156,7 @@ export function uploadFolderRequest(folderName, path) {
       credentials: 'include',
     };
 
-    fetch(`${API_URL}/folder/${path}/${folderName}`, options)
+    fetch(`${API_URL} /folder/${path}/${folderName}`, options)
       .then((res) => {
         if (res.ok) {
           getFolderRequest(path)
