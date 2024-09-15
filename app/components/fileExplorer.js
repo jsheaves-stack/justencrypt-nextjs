@@ -10,7 +10,8 @@ import LazyLoadWrapper from './lazyLoadWrapper';
 import CreateFolderModal from './createFolderModal';
 
 import CreateFolder from '../assets/icons/folder-plus.svg';
-import AddFile from '../assets/icons/plus-square.svg';
+import UploadFolder from '../assets/icons/folder.svg';
+import UploadFile from '../assets/icons/upload-square.svg';
 import Logout from '../assets/icons/log-out.svg';
 import Back from '../assets/icons/arrow-left-circle.svg';
 import SortUp from '../assets/icons/sort-up.svg';
@@ -181,7 +182,7 @@ export default function FileExplorer(props) {
   };
 
   return (
-    <div className="absolute grid h-full w-full grid-rows-[4em,1fr] overflow-hidden">
+    <div className="absolute grid h-full w-full grid-rows-[min-content,1fr] overflow-hidden">
       {showCreateFolderModal && (
         <CreateFolderModal
           path={path}
@@ -189,16 +190,48 @@ export default function FileExplorer(props) {
           setFolderContents={(contents) => setFolderContents(contents)}
         />
       )}
-      <div className="h-16 content-center border-b-4 border-black bg-bg">
+      <div className="h-min content-center border-b-4 border-black bg-bg pb-4 pt-4">
         <div className="mx-auto flex w-full items-center justify-between">
           <button
-            className="text-align-center align-center ml-4 flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+            className="text-align-center align-center ml-4 mr-4 flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
             onClick={() => updatePath(popPath(path))}
           >
             <img src={Back.src}></img>
             <span className="hidden sm:block">Back</span>
           </button>
+          <button
+            className="text-align-center align-center mr-4 flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+            onClick={() => props.submitLogout()}
+          >
+            <img src={Logout.src}></img>
+            <span className="hidden sm:block">Logout</span>
+          </button>
+        </div>
+      </div>
+      <div
+        className={`grid h-full w-full grid-rows-[min-content,1fr] gap-4 overflow-scroll bg-bg ${dragging ? 'bg-white' : ''}`}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+      >
+        <div className="mt-4 grid h-min w-full auto-rows-min justify-items-end gap-4">
           <div className="mr-4 flex items-center justify-between gap-4">
+            <input
+              id="folder-upload"
+              className="inset-0 hidden h-10 w-32 cursor-pointer opacity-0"
+              type="file"
+              webkitdirectory=""
+              multiple={true}
+              onChange={(e) => setFiles(e.target.files)}
+            />
+            <label
+              htmlFor="folder-upload"
+              className="text-align-center align-center flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+            >
+              <img src={UploadFolder.src}></img>
+              <span className="hidden sm:block">Upload Folder</span>
+            </label>
+
             <input
               id="file-upload"
               className="inset-0 hidden h-10 w-32 cursor-pointer opacity-0"
@@ -210,9 +243,10 @@ export default function FileExplorer(props) {
               htmlFor="file-upload"
               className="text-align-center align-center flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
             >
-              <img src={AddFile.src}></img>
-              <span className="hidden sm:block">Add File</span>
+              <img src={UploadFile.src}></img>
+              <span className="hidden sm:block">Upload File</span>
             </label>
+
             <button
               className="text-align-center align-center flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
               onClick={() => {
@@ -222,23 +256,7 @@ export default function FileExplorer(props) {
               <img src={CreateFolder.src}></img>
               <span className="hidden sm:block">Create Folder</span>
             </button>
-            <button
-              className="text-align-center align-center flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
-              onClick={() => props.submitLogout()}
-            >
-              <img src={Logout.src}></img>
-              <span className="hidden sm:block">Logout</span>
-            </button>
           </div>
-        </div>
-      </div>
-      <div
-        className={`grid h-full w-full grid-rows-[min-content,1fr] gap-4 overflow-scroll bg-bg ${dragging ? 'bg-white' : ''}`}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-      >
-        <div className="grid h-14 w-full justify-items-end">
           <div className="mr-4 grid h-full grid-cols-2 items-end gap-4">
             <button
               className="text-align-center align-center flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none sm:w-40"

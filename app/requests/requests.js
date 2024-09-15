@@ -88,21 +88,23 @@ export function uploadFilesRequest(files, path) {
   return new Promise((resolve, reject) => {
     const uploadFilesPromises = [];
 
-    if (!files) return reject();
+    if (!files || !files?.length > 0) return reject();
 
     for (let x = 0; x < files.length; x++) {
       const file = files[x];
+      const isFolder = file.webkitRelativePath.includes(file.name);
+      const fileName = isFolder ? file.webkitRelativePath : file.name;
 
       const options = {
         method: 'PUT',
         credentials: 'include',
         body: file,
         headers: {
-          'Content-Type': file.type,
+          'Content-Type': file.type || 'application/octet-stream',
         },
       };
 
-      uploadFilesPromises.push(fetch(`${API_URL}/file${path}/${file.name}`, options));
+      uploadFilesPromises.push(fetch(`${API_URL}/file${path}${fileName}`, options));
     }
 
     Promise.all(uploadFilesPromises)
