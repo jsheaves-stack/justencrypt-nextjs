@@ -12,7 +12,6 @@ import CreateFolderModal from './createFolderModal';
 import CreateFolder from '../assets/icons/folder-plus.svg';
 import UploadFolder from '../assets/icons/folder.svg';
 import UploadFile from '../assets/icons/upload-square.svg';
-import Logout from '../assets/icons/log-out.svg';
 import Back from '../assets/icons/arrow-left-circle.svg';
 import SortUp from '../assets/icons/sort-up.svg';
 import SortDown from '../assets/icons/sort-down.svg';
@@ -190,24 +189,6 @@ export default function FileExplorer(props) {
           setFolderContents={(contents) => setFolderContents(contents)}
         />
       )}
-      <div className="h-min content-center border-b-4 border-black bg-bg pb-4 pt-4">
-        <div className="mx-auto flex w-full items-center justify-between">
-          <button
-            className="text-align-center align-center ml-4 mr-4 flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
-            onClick={() => updatePath(popPath(path))}
-          >
-            <img src={Back.src}></img>
-            <span className="hidden sm:block">Back</span>
-          </button>
-          <button
-            className="text-align-center align-center mr-4 flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
-            onClick={() => props.submitLogout()}
-          >
-            <img src={Logout.src}></img>
-            <span className="hidden sm:block">Logout</span>
-          </button>
-        </div>
-      </div>
       <div
         className={`grid h-full w-full grid-rows-[min-content,1fr] gap-4 overflow-scroll bg-bg ${dragging ? 'bg-white' : ''}`}
         onDragOver={handleDragOver}
@@ -215,6 +196,13 @@ export default function FileExplorer(props) {
         onDrop={handleDrop}
       >
         <div className="mt-4 grid h-min w-full auto-rows-min justify-items-end gap-4">
+          <button
+            className="text-align-center align-center absolute left-0 ml-4 mr-4 flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
+            onClick={() => updatePath(popPath(path))}
+          >
+            <img src={Back.src}></img>
+            <span className="hidden sm:block">Back</span>
+          </button>
           <div className="mr-4 flex items-center justify-between gap-4">
             <input
               id="folder-upload"
