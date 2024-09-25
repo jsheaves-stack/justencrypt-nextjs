@@ -78,7 +78,7 @@ export default function Home() {
           <Loading />
         </div>
       ) : authenticated ? (
-        <div className="h-full w-full">
+        <div className="grid h-full w-full grid-rows-[min-content,1fr]">
           <div className="mx-auto flex h-10 h-min w-full justify-end border-b-4 border-black bg-bg pb-4 pt-4">
             <button
               className="text-align-center align-center mr-4 flex grid h-10 cursor-pointer grid-cols-[1.5em,1fr] justify-center gap-1 rounded-base border-2 border-black bg-main px-4 py-2 text-sm font-base shadow-base transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none"
