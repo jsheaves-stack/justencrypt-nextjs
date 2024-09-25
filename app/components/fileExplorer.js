@@ -181,7 +181,7 @@ export default function FileExplorer(props) {
   };
 
   return (
-    <div className="absolute grid h-full w-full grid-rows-[min-content,1fr]">
+    <div className="grid h-full w-full grid-rows-[min-content,1fr]">
       {showCreateFolderModal && (
         <CreateFolderModal
           path={path}
