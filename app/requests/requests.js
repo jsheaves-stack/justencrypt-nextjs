@@ -156,7 +156,7 @@ export function uploadFolderRequest(folderName, path) {
       credentials: 'include',
     };
 
-    fetch(`${API_URL} /folder/${path}/${folderName}`, options)
+    fetch(`${API_URL}${sanitizePath(`/folder/${path}/${folderName}`)}`, options)
       .then((res) => {
         if (res.ok) {
           getFolderRequest(path)
