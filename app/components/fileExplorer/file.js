@@ -3,8 +3,11 @@
 import { useState } from 'react';
 import { sanitizePath } from '../../utils/util';
 import { deleteFileRequest } from '../../requests/requests';
+
 import Image from './files/image';
 import Video from './files/video';
+import Editable from './files/editable';
+
 import 'react-medium-image-zoom/dist/styles.css';
 
 import Delete from '../../assets/icons/trash.svg';
