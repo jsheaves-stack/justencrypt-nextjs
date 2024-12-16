@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { checkAuthRequest, submitLogoutRequest } from './requests/requests';
 
 import LoginForm from './components/loginForm';
-import FileExplorer from './components/fileExplorer';
+import FileExplorer from './components/fileExplorer/fileExplorer';
 import Loading from './components/loading';
 
 import ChangeTheme from './assets/icons/color-filter.svg';

@@ -1,6 +1,6 @@
 'use client';
 
-import FolderIcon from '../assets/icons/folder.svg';
+import FolderIcon from '../../assets/icons/folder.svg';
 
 export default function Folder(props) {
   return (

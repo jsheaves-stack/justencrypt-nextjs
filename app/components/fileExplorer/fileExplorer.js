@@ -1,21 +1,21 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getFolderRequest, uploadFilesRequest } from '../requests/requests';
-import { sanitizePath, popPath } from '../utils/util';
+import { getFolderRequest, uploadFilesRequest } from '../../requests/requests';
+import { sanitizePath, popPath } from '../../utils/util';
 
 import File from './file';
 import Folder from './folder';
 import LazyLoadWrapper from './lazyLoadWrapper';
 import CreateFolderModal from './createFolderModal';
 
-import CreateFolder from '../assets/icons/folder-plus.svg';
-import UploadFolder from '../assets/icons/folder.svg';
-import UploadFile from '../assets/icons/upload-square.svg';
-import Back from '../assets/icons/arrow-left-circle.svg';
-import SortUp from '../assets/icons/sort-up.svg';
-import SortDown from '../assets/icons/sort-down.svg';
-import Sort from '../assets/icons/sort.svg';
+import CreateFolder from '../../assets/icons/folder-plus.svg';
+import UploadFolder from '../../assets/icons/folder.svg';
+import UploadFile from '../../assets/icons/upload-square.svg';
+import Back from '../../assets/icons/arrow-left-circle.svg';
+import SortUp from '../../assets/icons/sort-up.svg';
+import SortDown from '../../assets/icons/sort-down.svg';
+import Sort from '../../assets/icons/sort.svg';
 
 const sortTypes = {
   Alphabetical: 'Alphabetical',

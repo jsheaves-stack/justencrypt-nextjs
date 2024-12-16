@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { uploadFolderRequest } from '../requests/requests';
+import { uploadFolderRequest } from '../../requests/requests';
 
 export default function CreateFolderModal(props) {
   const [folderName, setFolderName] = useState('');
