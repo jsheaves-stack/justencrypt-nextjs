@@ -2,24 +2,6 @@ import { sanitizePath } from '../utils/util';
 
 const API_URL = process.env.NEXT_PUBLIC_JUSTENCRYPT_API_URL;
 
-export function checkAuthRequest() {
-  return new Promise((resolve, reject) => {
-    const options = { method: 'GET', credentials: 'include' };
-
-    fetch(`${API_URL}/session`, options)
-      .then((res) => {
-        if (res.ok) {
-          return resolve(true);
-        } else {
-          return resolve(false);
-        }
-      })
-      .catch((err) => {
-        return reject(err);
-      });
-  });
-}
-
 export function submitLoginRequest(username, password) {
   return new Promise((resolve, reject) => {
     const options = {

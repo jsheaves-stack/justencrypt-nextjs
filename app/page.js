@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { checkAuthRequest, submitLogoutRequest } from './requests/requests';
+import { getFolderRequest, submitLogoutRequest } from './requests/requests';
 
 import LoginForm from './components/loginForm';
 import FileExplorer from './components/fileExplorer/fileExplorer';
@@ -59,13 +59,14 @@ export default function Home() {
   };
 
   useEffect(() => {
-    checkAuthRequest()
-      .then((authenticated) => {
-        setAuthenticated(authenticated);
-        setInitialLoad(false);
+    getFolderRequest("/")
+      .then(() => {
+        setAuthenticated(true);
       })
       .catch((err) => {
         console.error(err);
+      }).finally(() => {
+        setInitialLoad(false);
       });
   }, []);
 
